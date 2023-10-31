@@ -22,10 +22,10 @@ public class HomeController : Controller
         return View(movie);
     }
 
-    [HttpGet("[action]")]
+  
     public IActionResult About()
     {
-        string ab = "About page welcome!".ToUpper();
+       
         return View();
     }
 }

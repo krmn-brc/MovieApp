@@ -1,0 +1,15 @@
+@model MovieGenreViewModel
+   
+   @section menu
+   {
+        @* @await Html.PartialAsync("_Menu", Model.Genres) *@
+         @await Component.InvokeAsync("Genres")
+   }
+
+     <h1>Film Listesi</h1>
+     <div class="movies" id="movies">
+        @foreach(var movie in Model.Movies)
+        {
+           @await Html.PartialAsync("_Movie", movie);
+        }
+     </div>

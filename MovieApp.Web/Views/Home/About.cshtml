@@ -1,2 +1,8 @@
-@model string
+@model List<Genre>
 <h1>Home About page welcome!</h1>
+
+@section menu 
+{
+    @* @await Html.PartialAsync("_Menu", Model) *@
+    @await Component.InvokeAsync("Genres")
+}
