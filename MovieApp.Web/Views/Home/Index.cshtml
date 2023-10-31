@@ -1,0 +1,22 @@
+﻿@model Movie;
+@section header
+{
+     @await Html.PartialAsync("_Header")
+}
+    <h1>Film Listesi</h1>
+     <div class="movies" id="movies">
+             <img src="/images/@Model.ImageUrl" alt="@Model.Title" width="100" height="120">
+            <div class="movie">
+                <p>@Model.Title</p>
+                <p>@Model.Description</p>
+                <p>@Model.Director</p>
+                <p>
+                    <ul>
+                        @foreach(var item in Model.Players)
+                         {
+                            <li>@item</li>
+                         }
+                    </ul>
+                </p>
+            </div>
+        
