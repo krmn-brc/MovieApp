@@ -1,10 +1,13 @@
-﻿@model Movie;
+﻿@model HomePageViewModel;
 @section header
 {
      @await Html.PartialAsync("_Header")
 }
     <h1>Film Listesi</h1>
      <div class="movies" id="movies">
-        @await Html.PartialAsync("_Movie", Model)
+        @foreach(var movie in Model.PopularMovies)
+        {
+             @await Html.PartialAsync("_Movie", movie)
+        }
     </div>
         

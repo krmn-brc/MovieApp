@@ -8,8 +8,20 @@
 
      <h1>Film Listesi</h1>
      <div class="movies" id="movies">
-        @foreach(var movie in Model.Movies)
-        {
-           @await Html.PartialAsync("_Movie", movie);
-        }
+       @if(Model.Movies.Count <= 0)
+       {
+         <div class="alert text-center fw-bold alert-warning" role="alert">
+              Film Bulunamadı!
+         </div>
+       }
+      else
+      {
+            @foreach(var movie in Model.Movies)
+         {
+            @await Html.PartialAsync("_Movie", movie);
+         }
+      }
      </div>
+
+    
+ 

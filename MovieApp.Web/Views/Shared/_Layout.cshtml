@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/toastr/css/toastr.min.css">
     
     <title>@ViewBag.Title</title>
 </head>
@@ -32,6 +33,80 @@
         }
         
     </div>
- @RenderSection("scripts", false)
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/toastr/js/toastr.min.js"></script>
+
+<script>
+    toastr.options.preventDuplicates = false;
+</script>
+  
+
+    @{
+
+        ProcessToastrs();
+    }
+ 
+ @RenderSection("_Scripts", false)
 </body>
 </html>
+
+ @functions
+{
+    public  void ProcessToastrs()
+    {
+        List<(DateTime Date, ToastrModel Toastr)>  toastrs = ToastrService.ReadAndRemoveQueue();
+        @if(toastrs != null && toastrs.Count > 0)
+            {
+                  foreach(var item in toastrs)
+                  {
+                     ShowToastr(item.Toastr);
+                  }
+            }
+      }
+      private  void ShowToastr(ToastrModel toastr)
+      {
+         switch (toastr.Type)
+         {
+             case ToastrType.Info : 
+                 ToastrInfo(toastr.Message, toastr.Title);
+               break;
+             case ToastrType.Success : 
+                 ToastrSuccess(toastr.Message, toastr.Title);
+               break;
+             case ToastrType.Warning : 
+                 ToastrWarning(toastr.Message, toastr.Title);
+               break;
+             case ToastrType.Error : 
+                 ToastrError(toastr.Message, toastr.Title);
+               break;
+             default:
+                  ToastrInfo(toastr.Message, toastr.Title);
+               break;
+         }
+      }
+      private  void ToastrInfo(string message, string title)
+      {
+         <script>
+               toastr.info('@message', '@title')   
+          </script>
+      }
+      private  void ToastrWarning(string message, string title)
+      {
+            <script>
+               toastr.warning('@message', '@title')   
+            </script>
+      }
+      private  void ToastrSuccess(string message, string title)
+      {
+          <script>
+               toastr.success('@message', '@title')   
+          </script>
+      }
+      private  void ToastrError(string message, string title)
+      {
+         <script>
+               toastr.error('@message', '@title')   
+          </script>
+      }
+   }
+  

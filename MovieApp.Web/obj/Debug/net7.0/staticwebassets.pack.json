@@ -21,6 +21,30 @@
       "PackagePath": "staticwebassets/images/3.jpg"
     },
     {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/fatman.jpg",
+      "PackagePath": "staticwebassets/images/fatman.jpg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/hardkill.jpeg",
+      "PackagePath": "staticwebassets/images/hardkill.jpeg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/jiujitsu.jpg",
+      "PackagePath": "staticwebassets/images/jiujitsu.jpg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/tcraft.jpg",
+      "PackagePath": "staticwebassets/images/tcraft.jpg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/tdaltong.jpg",
+      "PackagePath": "staticwebassets/images/tdaltong.jpg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/tenet.jpg",
+      "PackagePath": "staticwebassets/images/tenet.jpg"
+    },
+    {
       "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
@@ -251,6 +275,30 @@
     {
       "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/css/toastr.css",
+      "PackagePath": "staticwebassets/toastr/css/toastr.css"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/css/toastr.min.css",
+      "PackagePath": "staticwebassets/toastr/css/toastr.min.css"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/js/toastr.js",
+      "PackagePath": "staticwebassets/toastr/js/toastr.js"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/js/toastr.min.js",
+      "PackagePath": "staticwebassets/toastr/js/toastr.min.js"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/scss/toastr.scss",
+      "PackagePath": "staticwebassets/toastr/scss/toastr.scss"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/toastr/toastr.less",
+      "PackagePath": "staticwebassets/toastr/toastr.less"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.MovieApp.Web.Microsoft.AspNetCore.StaticWebAssets.props",

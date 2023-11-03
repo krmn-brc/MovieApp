@@ -8,14 +8,21 @@
             <div class="collapse navbar-collapse" id="navbarToggler">
 
                   <a class="navbar-brand" href="/">Movie App</a>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav me-auto ">
                     <li class="nav-item">
                         <a class="nav-link active" href="/movies/list">Filmler</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/home/about">Hakkımızda</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movies/create">Yeni Film Ekle</a>
+                    </li>
             </ul>
+            <form action="/movies/list" method="get" role="search" class="d-flex">
+                <input name="query" class="form-control me-2" type="search" placeholder="Film ara" aria-label="search">
+                <button class="btn btn-outline-dark " type="submit">Bul</button>
+            </form>
             </div>
         </div>
     </nav>

@@ -1,64 +1,96 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MovieApp.Web.Data;
 using MovieApp.Web.Models;
+using MovieApp.Web.Services.ToastrServices;
 
 namespace MovieApp.Web.Controllers
 {
   
     public class MoviesController: Controller
     {
-        private List<Movie> movies;
-        public MoviesController()
-         {
-            movies = new()
-            {
-                new()
-                {
-                    Id = 1,
-                    Title = "Film 1",
-                    Description = "Film 1 Açıklama",
-                    Director = "Film 1 Yönetmeni",
-                    Players = new[] {"1. Oyuncu", "2. Oyuncu", "3. Oyuncu"},
-                    ImageUrl = "1.jpg"
-                },
-                new()
-                {
-                    Id = 2,
-                    Title = "Film 2",
-                    Description = "Film 2 Açıklama",
-                    Director = "Film 2 Yönetmeni",
-                    Players = new[] {"1. Oyuncu", "2. Oyuncu", "3. Oyuncu"},
-                    ImageUrl = "2.jpg"
-                },
-                new()
-                {
-                    Id = 3,
-                    Title = "Film 3",
-                    Description = "Film 3 Açıklama",
-                    Director = "Film 3 Yönetmeni",
-                    Players = new[] {"1. Oyuncu", "2. Oyuncu", "3. Oyuncu"},
-                    ImageUrl = "3.jpg"
-                },
-            };
-            
-          
-         }
+
+        [HttpGet]
         public IActionResult Index()
         {
-            
-            return View(movies[0]);
+            return View();
         }
 
-    
-        public IActionResult List()
+        [HttpGet]
+        public IActionResult List(int? id, string query)
         {
+            var movies = MovieRepository.Movies;
+
+            if(id != null)
+            {
+               movies = movies.Where(x => x.GenreId == id).ToList();
+            } 
+            if(!string.IsNullOrEmpty(query))
+            {
+                movies = movies.Where(x => x.Title.ToLower().Contains(query) || x.Description.ToLower().Contains(query)).ToList();
+            }
+           
+
             var viewModel = new MovieGenreViewModel()
             {
-                Movies = movies,
+                Movies = movies
          
             };
             return View("Movies", viewModel);
         }
 
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+
+            return View(MovieRepository.GetById(id));
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Movie movie)
+        {
+            if(ModelState.IsValid)
+            {
+                MovieRepository.Add(movie);
+                return RedirectToAction("List");
+            }
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            return View();
+        }
        
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            return View(MovieRepository.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movie movie)
+        {
+            if(ModelState.IsValid)
+            {
+                MovieRepository.Update(movie);
+                return RedirectToAction("Details", "Movies", new {@id = movie.Id});
+            }
+            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            return View(movie);
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(int id, string Title)
+        {
+            MovieRepository.Delete(id);
+            ToastrService.AddToQueue($"{Title} isimli film silindi", "Bilgilendirme", ToastrType.Warning);
+            return RedirectToAction("List");
+        }
     }
 }
