@@ -29,3 +29,14 @@
 /workspaces/MovieApp/MovieApp.Web/obj/Debug/net7.0/ref/MovieApp.Web.dll
 /workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/package-lock.json
 /workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/package.json
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Npgsql.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/workspaces/MovieApp/MovieApp.Web/obj/Debug/net7.0/MovieApp.Web.csproj.CopyComplete
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Humanizer.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/Mono.TextTemplating.dll
+/workspaces/MovieApp/MovieApp.Web/bin/Debug/net7.0/System.CodeDom.dll

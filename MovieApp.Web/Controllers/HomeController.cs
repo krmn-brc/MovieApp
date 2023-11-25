@@ -7,12 +7,18 @@ namespace MovieApp.Web.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly MovieDbContext _context;
+
+    public HomeController(MovieDbContext context)
+    {
+        _context = context;
+    }
 
     public IActionResult Index()
     {
         HomePageViewModel viewModel = new()
         {
-            PopularMovies = MovieRepository.Movies
+            PopularMovies = _context.Movies.ToList()
         };
         return View(viewModel);
     }

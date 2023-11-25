@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MovieApp.Web.Data;
+using MovieApp.Web.Entities;
 using MovieApp.Web.Models;
 using MovieApp.Web.Services.ToastrServices;
 
@@ -9,6 +10,12 @@ namespace MovieApp.Web.Controllers
   
     public class MoviesController: Controller
     {
+        private readonly MovieDbContext _context;
+
+        public MoviesController(MovieDbContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -19,21 +26,21 @@ namespace MovieApp.Web.Controllers
         [HttpGet]
         public IActionResult List(int? id, string query)
         {
-            var movies = MovieRepository.Movies;
+            var movies = _context.Movies.AsQueryable();
 
             if(id != null)
             {
-               movies = movies.Where(x => x.GenreId == id).ToList();
+               movies = movies.Where(x => x.GenreId == id);
             } 
             if(!string.IsNullOrEmpty(query))
             {
-                movies = movies.Where(x => x.Title.ToLower().Contains(query) || x.Description.ToLower().Contains(query)).ToList();
+                movies = movies.Where(x => x.Title.ToLower().Contains(query) || x.Description.ToLower().Contains(query));
             }
            
 
             var viewModel = new MovieGenreViewModel()
             {
-                Movies = movies
+                Movies = movies.ToList()
          
             };
             return View("Movies", viewModel);
@@ -43,13 +50,13 @@ namespace MovieApp.Web.Controllers
         public IActionResult Details(int id)
         {
 
-            return View(MovieRepository.GetById(id));
+            return View(_context.Movies.Find(id));
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            ViewBag.Genres = new SelectList(_context.Genres.ToList(), "Id", "Name");
             return View();
         }
 
@@ -58,18 +65,22 @@ namespace MovieApp.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                MovieRepository.Add(movie);
+                // MovieRepository.Add(movie);
+                _context.Movies.Add(movie);
+                _context.SaveChanges();
+                ToastrService.AddToQueue($"Yeni bir film eklendi", "Bilgilendirme", ToastrType.Success);
+
                 return RedirectToAction("List");
             }
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            ViewBag.Genres = new SelectList(_context.Genres.ToList(), "Id", "Name");
             return View();
         }
        
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
-            return View(MovieRepository.GetById(id));
+            ViewBag.Genres = new SelectList(_context.Genres.ToList(), "Id", "Name");
+            return View(_context.Movies.Find(id));
         }
 
         [HttpPost]
@@ -77,10 +88,16 @@ namespace MovieApp.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                MovieRepository.Update(movie);
+                
+                ToastrService.AddToQueue($"{movie.Title} isimli film güncelleniyor", "Bilgilendirme", ToastrType.Warning);
+                // MovieRepository.Update(movie);
+                _context.Movies.Update(movie);
+                _context.SaveChanges();
+                ToastrService.AddToQueue($"{movie.Title} isimli film güncellendi", "Bilgilendirme", ToastrType.Success);
                 return RedirectToAction("Details", "Movies", new {@id = movie.Id});
+                
             }
-            ViewBag.Genres = new SelectList(GenreRepository.Genres, "Id", "Name");
+            ViewBag.Genres = new SelectList(_context.Genres.ToList(), "Id", "Name");
             return View(movie);
         }
 
@@ -88,7 +105,10 @@ namespace MovieApp.Web.Controllers
         [HttpPost]
         public IActionResult Delete(int id, string Title)
         {
-            MovieRepository.Delete(id);
+            // MovieRepository.Delete(id);
+            var entity = _context.Movies.Find(id);
+            _context.Movies.Remove(entity);
+            _context.SaveChanges();
             ToastrService.AddToQueue($"{Title} isimli film silindi", "Bilgilendirme", ToastrType.Warning);
             return RedirectToAction("List");
         }

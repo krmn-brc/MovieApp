@@ -10,9 +10,7 @@
      <div class="movies" id="movies">
        @if(Model.Movies.Count <= 0)
        {
-         <div class="alert text-center fw-bold alert-warning" role="alert">
-              Film Bulunamadı!
-         </div>
+         ToastrService.AddToQueue("Film bulunamadı", "Film Arama", ToastrType.Error);
        }
       else
       {

@@ -1,9 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using MovieApp.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<MovieDbContext>(options 
+=> options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
 
 var app = builder.Build();
 

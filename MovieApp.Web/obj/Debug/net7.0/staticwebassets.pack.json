@@ -21,6 +21,30 @@
       "PackagePath": "staticwebassets/images/3.jpg"
     },
     {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d1.jpg",
+      "PackagePath": "staticwebassets/images/directors/d1.jpg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d2.jpeg",
+      "PackagePath": "staticwebassets/images/directors/d2.jpeg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d3.jpeg",
+      "PackagePath": "staticwebassets/images/directors/d3.jpeg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d4.jpeg",
+      "PackagePath": "staticwebassets/images/directors/d4.jpeg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d5.jpeg",
+      "PackagePath": "staticwebassets/images/directors/d5.jpeg"
+    },
+    {
+      "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/directors/d6.jpeg",
+      "PackagePath": "staticwebassets/images/directors/d6.jpeg"
+    },
+    {
       "Id": "/workspaces/MovieApp/MovieApp.Web/wwwroot/images/fatman.jpg",
       "PackagePath": "staticwebassets/images/fatman.jpg"
     },

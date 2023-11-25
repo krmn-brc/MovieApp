@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MovieApp.Web.Models;
+using MovieApp.Web.Entities;
 
 namespace MovieApp.Web.Data
 {
